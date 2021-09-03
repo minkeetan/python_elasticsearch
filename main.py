@@ -6,5 +6,15 @@ resp = client.info()
 
 print(resp)
 
-res = client.search(index="fts-v5")
-print("Got %d Hits:" % res['hits']['total']['value'])
+query = {
+    "from":0,
+    "size":1,
+    "query": {
+        "match_all": {
+        }
+    }
+}
+
+res = client.search(index="fts-v5",  body=query)
+
+print(res["hits"]["total"])
